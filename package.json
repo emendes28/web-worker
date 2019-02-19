@@ -1,0 +1,31 @@
+{
+  "name": "slides-apresentacao-webworker",
+  "version": "1.0.0",
+  "description": "Apresentacao sobre API HTML5",
+  "main": "index.mdx",
+  "dependencies": {
+    "@rebass/grid": "^6.0.0-7",
+    "mdx-deck": "^1.10.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "mdx-deck index.mdx",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/emendes28/web-worker.git"
+  },
+  "keywords": [
+    "webworker",
+    "html5",
+    "apiweb",
+    "nerdzao-palestra"
+  ],
+  "author": "Evandro Mendes",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/emendes28/web-worker/issues"
+  },
+  "homepage": "https://github.com/emendes28/web-worker#readme"
+}
