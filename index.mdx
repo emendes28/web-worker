@@ -1,17 +1,226 @@
 export { future as theme } from 'mdx-deck/themes'
+import { LiveCode } from 'mdx-deck-live-code';
+import { Appear, Notes  } from 'mdx-deck'
 
-# Hello
+#  HTML5 API Web / Web Workers
 ---
-# About Me
+# Sobre mim 
+
+Gosto muito de desenvolver soluções ponta a ponta 
+usando tecnologias inovadoras ou consolidadas me interesso pelos tópicos Realidade Virtual, blockchain e 
+deep learning desde que faça sentido ao cenário aplicado.
+Atuo a 8 anos no desenvolvimento de webapp e sua infraestrutura.
 ---
+# Browser Compativeis 
+https://caniuse.com/
+---
+# Fetch API
+
 ```jsx
-<CodeSnippet />
+partial interface mixin WindowOrWorkerGlobalScope {
+  [NewObject] Promise<Response> fetch(RequestInfo input, optional RequestInit init);
+};
 ```
+<Notes>
+  The Fetch API provides an interface for fetching resources (including across the network). 
+  It will seem familiar to anyone who has used XMLHttpRequest, 
+  but the new API provides a more powerful and flexible feature set.
+</Notes>
 ---
-import { Box } from '@rebass/grid'
+<LiveCode
+	title="Fetch API"
+	code={`const className = 'my-image';
+const url = [
+  'https://cdn.tecnologia.net/wp-content/uploads/2017/06/tecla-shift.jpg',
+  'https://upload.wikimedia.org/wikipedia/commons/7/77/Delete_key1.jpg'
+];
+const getNumber = () => Math.floor(Math.random()+0.5);
+const mudaImg = () => {
+  const myImage = document.querySelector('.my-image');
+    fetch(url[getNumber()])
+        .then(res => res.blob())
+        .then(res => {
+            const objectURL = URL.createObjectURL(res);
+            myImage.src = objectURL;
+    });
+};
+const Fetch = () => (
+		<img class={className} height='120px' onClick={mudaImg} src={url[getNumber()]} />
+	);
+render(Fetch);`}
+	providerProps={{ noInline: true,style: { fontSize: '0.8em', color: 'red' } }}
+	editorProps={{ style: { fontSize: '0.5em', background: '#001628' } }}
+/>
 
-<Box color='tomato'>
-  Hello
-</Box>
+
 ---
-# The end
+# Fullscreen API
+
+---
+<LiveCode
+	title="Fullscreen API"
+	code={`
+const url = 'https://secure.meetupstatic.com/photos/event/5/f/5/b/600_478464411.jpeg';
+function toggleFullScreen() {
+  if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen();
+  } else {
+    if (document.exitFullscreen) {
+      document.exitFullscreen(); 
+    }
+  }
+}
+document.addEventListener("keypress", function(e) {
+  if (e.keyCode === 13) {
+    toggleFullScreen();
+  }
+}, false);
+const Fullscreen = () => (
+		<img onClick={toggleFullScreen} src={url} />
+	);
+render(Fullscreen);`}
+	providerProps={{ noInline: true,style: { fontSize: '0.8em', color: 'red' } }}
+	editorProps={{ style: { fontSize: '0.5em', background: '#001628' } }}
+/>
+
+
+---
+# Bluetooth API
+https://webbluetoothcg.github.io
+---
+Canvas API
+
+---
+
+
+<LiveCode
+	title="Canvas API"
+	code={`
+  const typeFile = 'file';
+  
+function redrawMeme(image) {
+    var canvas = document.querySelector('canvas');
+    var ctx = canvas.getContext('2d');
+    ctx.drawImage(window.imageSrc, 0, 0, canvas.width, canvas.height);
+
+    function userText(str, y) {
+        ctx.font = '36pt Impact';
+        ctx.textAlign = 'center';
+        ctx.fillStyle = 'white';
+        ctx.fillText(str, canvas.width / 2, y);
+
+        ctx.strokeStyle = 'black';
+        ctx.lineWidth = 3;
+        ctx.strokeText(str, canvas.width / 2, y);
+    }
+    
+    userText('Palestra', 60);
+    userText('Nerdzão', 475);
+
+}
+
+function saveFile() {
+    window.open(document.querySelector('canvas').toDataURL());
+}
+
+function handleFileSelect(evt) {
+    var canvasWidth = 500;
+    var canvasHeight = 500;
+    var file = evt.target.files[0];
+
+    var reader = new FileReader();
+    reader.onload = function (fileObject) {
+        var data = fileObject.target.result;
+
+        var image = new Image();
+        image.onload = function () {
+
+            window.imageSrc = this;
+            redrawMeme(window.imageSrc, null, null);
+        }
+
+        image.src = data;
+        console.log(fileObject.target.result);
+    };
+    reader.readAsDataURL(file)
+}
+
+document.getElementById('file').addEventListener('change', handleFileSelect, false);
+  const Canvas = () => (
+    <div>
+      <input type={typeFile} id={typeFile} />
+    </div>  
+  );
+render(Canvas);`}
+	providerProps={{ noInline: true,style: { fontSize: '0.8em', color: 'red' } }}
+	editorProps={{ style: { fontSize: '0.5em', background: '#001628' } }}
+/>
+
+---
+<ul>
+  <Appear>
+    <li>Fetch API</li>
+    <li>Fullscreen API</li>
+    <li>Frame Timing API</li>
+    <li>File and Directory Entries API</li>
+    <li>Background Tasks API</li>
+    <li>Battery Status API</li>
+    <li>Beacon API</li>
+    <li>Web Bluetooth API</li>
+    <li>Broadcast Channel API</li>
+    <li>Browser API</li>
+    <li>CSS Font Loading API</li>
+    <li>CSS Object Model (CSSOM)</li>
+    <li>Canvas API</li>
+    <li>Channel Messaging API</li>
+    <li>Credential Management API</li>
+    <li>Clipboard API</li>
+    <li>Encoding API</li>
+    <li>Media Session API</li>
+    <li>Media Capture and Streams API (Media Stream)</li>
+    <li>Media Capabilities API</li>
+    <li>IndexedDB API</li>
+    <li>Gamepad API</li>
+    <li>Geolocation API</li>
+    <li>HTML Drag and Drop API</li>
+    <li>Intersection Observer API</li>
+    <li>Streams API</li>
+    <li>Storage API</li>
+    <li>Service Worker API</li>
+    <li>Server-sent events</li>
+    <li>Selection API</li> 
+    <li>Screen Capture API</li> 
+    <li>Resource Timing API</li> 
+    <li>Push API</li> 
+    <li>Presentation API</li> 
+    <li>Permissions API</li> 
+    <li>Payment Request API</li> 
+    <li>Page Visibility API</li> 
+    <li>Network Information API</li> 
+    <li>User Timing API</li> 
+    <li>Vibration API</li> 
+    <li>Web Audio API</li> 
+    <li>Web Animations API</li> 
+    <li>Web Authentication API</li> 
+    <li>Web Crypto API</li> 
+    <li>Notifications API</li> 
+    <li>Web Speech API</li> 
+    <li>Web Storage API</li> 
+    <li>Web Workers API</li> 
+    <li>WebGL: 2D and 3D graphics for the web</li> 
+    <li>WebRTC API</li> 
+    <li>WebVR API</li> 
+    <li>WebSocket API</li> 
+  </Appear>
+</ul>
+---
+Mais informações:  
+https://html.spec.whatwg.org/
+
+https://developer.mozilla.org/
+
+https://developers.google.com/
+
+Github: emendes28/web-Worker
+
+Linkedin: emendes2

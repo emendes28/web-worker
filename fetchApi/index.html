@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <meta http-equiv='X-UA-Compatible' content='ie=edge'>
+    <title>Fetch API</title>
+</head>
+<body>
+        <img class='my-image' onclick='mudaImg()' src='https://cdn.tecnologia.net/wp-content/uploads/2017/06/tecla-shift.jpg'>
+    <script>
+    const mudaImg = () => {
+    const myImage = document.querySelector('.my-image');
+    fetch('https://upload.wikimedia.org/wikipedia/commons/7/77/Delete_key1.jpg')
+        .then(res => res.blob())
+        .then(res => {
+            const objectURL = URL.createObjectURL(res);
+            myImage.src = objectURL;
+    });
+};
+    </script>
+</body>
+</html>

@@ -5,9 +5,12 @@
   "main": "index.mdx",
   "dependencies": {
     "@rebass/grid": "^6.0.0-7",
-    "mdx-deck": "^1.10.0"
+    "mdx-deck": "^1.10.0",
+    "mdx-deck-live-code": "^1.0.1"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "raw-loader": "^1.0.0"
+  },
   "scripts": {
     "start": "mdx-deck index.mdx",
     "test": "echo \"Error: no test specified\" && exit 1"
