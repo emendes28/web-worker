@@ -91,19 +91,13 @@ https://webbluetoothcg.github.io
 Canvas API
 
 ---
-
-
 <LiveCode
 	title="Canvas API"
 	code={`
   const typeFile = 'file';
   
-function redrawMeme(image) {
-    var canvas = document.querySelector('canvas');
-    var ctx = canvas.getContext('2d');
-    ctx.drawImage(window.imageSrc, 0, 0, canvas.width, canvas.height);
-
-    function userText(str, y) {
+    function userText(str, y,ctx) {
+       
         ctx.font = '36pt Impact';
         ctx.textAlign = 'center';
         ctx.fillStyle = 'white';
@@ -113,9 +107,14 @@ function redrawMeme(image) {
         ctx.lineWidth = 3;
         ctx.strokeText(str, canvas.width / 2, y);
     }
+function redrawMeme(image) {
+    var canvas = document.querySelector('canvas');
+    var ctx = canvas.getContext('2d');
+    ctx.drawImage(window.imageSrc, 0, 0, canvas.width, canvas.height);
+
     
-    userText('Palestra', 60);
-    userText('Nerdzão', 475);
+    userText('Palestra', 60, ctx);
+    userText('Nerdzão', 475, ctx);
 
 }
 
@@ -145,7 +144,7 @@ function handleFileSelect(evt) {
     reader.readAsDataURL(file)
 }
 
-document.getElementById('file').addEventListener('change', handleFileSelect, false);
+document.getElementById("file").addEventListener("change", handleFileSelect, false);
   const Canvas = () => (
     <div>
       <input type={typeFile} id={typeFile} />
@@ -155,6 +154,54 @@ render(Canvas);`}
 	providerProps={{ noInline: true,style: { fontSize: '0.8em', color: 'red' } }}
 	editorProps={{ style: { fontSize: '0.5em', background: '#001628' } }}
 />
+
+
+
+---
+# Geolocation
+
+<ul>
+  <Appear>
+    <li>getCurrentPosition</li>
+    <li>watchPosition</li>
+    <li>clearWatch</li>
+  </Appear>
+</ul>
+
+---
+
+<LiveCode
+	title="Geocalizacao API"
+	code={`
+
+let crd = {};
+let err = {};
+
+const options = {
+  enableHighAccuracy: true,
+  timeout: 5000,
+  maximumAge: 0
+};
+const success = (pos) => {
+  crd =  pos.coords;
+  return crd;
+};
+
+const error = (erro) => {
+  err = erro;
+  return err;
+};
+ 
+const Geocalizacao = () => (
+   
+		<p>Sua posição atual é: <br />
+	);
+render(Geocalizacao);`}
+	providerProps={{ noInline: true,style: { fontSize: '0.8em', color: 'red' } }}
+	editorProps={{ style: { fontSize: '0.5em', background: '#001628' } }}
+/>
+
+
 
 ---
 <ul>
